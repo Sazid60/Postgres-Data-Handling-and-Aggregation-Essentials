@@ -7,3 +7,53 @@ My Notion : https://www.notion.so/Practice-SQL-Queries-2641351446ad807882fdc9be3
 In this module, you’ll learn essential data manipulation concepts in PostgreSQL. From handling NULL values with COALESCE to implementing LIMIT and OFFSET for pagination, updating and deleting records, everything is covered. You’ll also explore how to group data with GROUP BY and refine results using HAVING for deeper analysis.
 
 ## 46-1 Handling NULL with COALESCE
+- If we consider a switch either the switch can be off, on or either the switch do not exist. 
+
+### IS METHOD FOR NULL VALUE 
+- There is one saying whatever we do with postgres it will give null 
+
+```sql
+select null = null
+```
+- it will give null 
+
+```sql 
+select null <> null 
+```
+- This is also null 
+
+- Make a query that will give us the students whose email is not null... 
+
+
+```sql
+select * from students where email = null 
+```
+
+```sql 
+select * from students where email <> null 
+```
+- this is wrong this will give nothing because null gives null 
+
+- we have to use `is` method 
+
+```sql 
+select * from students where email is null;
+```
+```sql 
+select * from students where email is not null;
+```
+
+### COALESCE FOR NULL VALUE 
+
+```SQL 
+select coalesce(null,null,2,3)
+```
+- This does something it skips null and when ever it gets value it will show the value and will not go further. like it will show result 2. where it is needed? 
+- when we design a database it goes from backend to frontend. if any null value goes to frontend, application will crash. 
+
+- lets see practical example of `coalesce`
+
+```sql
+select coalesce(email, 'Not Provided') as email, * from students;
+```
+- it will give the email field where the email field it will give us `Not Provided`
