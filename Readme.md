@@ -115,3 +115,47 @@ update students
   set grade ='F'
   where student_id in (1,2);
 ```
+
+## 46-4 Deleting Data
+
+```sql 
+delete from students; 
+```
+- this will delete all the data of the table. 
+
+
+```sql 
+delete from students where grade = 'F'; 
+```
+- who have got F will be removed 
+
+```sql 
+delete from students where age > 20 and grade = 'F'; 
+```
+
+## 46-5 GROUP BY Explained
+
+```sql
+select country from students group by country;
+```
+![alt text](image.png)
+
+- group by split then combine and then join; 
+
+- if we want to grab avg age 
+
+```sql 
+select country, avg(age) from students group by country;
+```
+- count students by country 
+
+```sql 
+select country, count(*) from students group by country;
+```
+
+- count students by grade 
+
+```sql 
+select grade, count(*) from students group by grade;
+```
+
