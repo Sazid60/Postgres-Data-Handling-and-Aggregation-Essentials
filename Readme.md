@@ -57,3 +57,33 @@ select coalesce(null,null,2,3)
 select coalesce(email, 'Not Provided') as email, * from students;
 ```
 - it will give the email field where the email field it will give us `Not Provided`
+
+## 46-2 LIMIT, OFFSET & Pagination
+### Limit 
+```sql 
+select * from students limit 5;
+```
+- it will show 5 data by limiting among all. 
+
+```sql
+select * from students 
+where country IN ('Bangladesh','USA','Spain') limit 1;
+
+```
+
+### OFFSET 
+
+```sql
+select * from students  limit 3 offset 2;
+```
+- It will skip first 2 data and send 
+
+
+### Lets do the pagination using Limit and Offset 
+
+```sql 
+select * from students  limit 3 offset 2 * 0; -- first page
+select * from students  limit 3 offset 2 * 1; -- second page 
+select * from students  limit 3 offset 2 * 2; -- Third page
+select * from students  limit 3 offset 2 * 3; -- fourth page 
+```
