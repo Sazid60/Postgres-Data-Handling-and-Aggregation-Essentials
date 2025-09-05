@@ -87,3 +87,31 @@ select * from students  limit 3 offset 2 * 1; -- second page
 select * from students  limit 3 offset 2 * 2; -- Third page
 select * from students  limit 3 offset 2 * 3; -- fourth page 
 ```
+
+## 46-3 Updating Data
+
+- suppose 31 no user has null email. lets update the email where the email is null 
+
+```sql 
+update students set email = 'default@gmail.com' where email is null
+```
+- multiple field update of a single row 
+
+```sql 
+update students 
+  set first_name = 'Dustbin', age = 100
+  where student_id = 1;
+```
+
+```sql 
+update students 
+  set grade ='D'
+  where student_id = 1 or student_id = 2;
+```
+- same thing in different method 
+
+```sql 
+update students 
+  set grade ='F'
+  where student_id in (1,2);
+```
