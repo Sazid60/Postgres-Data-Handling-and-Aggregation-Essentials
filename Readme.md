@@ -159,3 +159,16 @@ select country, count(*) from students group by country;
 select grade, count(*) from students group by grade;
 ```
 
+## 46-6 GROUP BY with HAVING
+- Courses with more than 1 students 
+
+```sql 
+select course, count(*) from students group by course having count(*) >1;
+```
+- its like where but not exactly same. where runs over entire table rows but having runs over the grouped rows only. 
+
+- lets find countries where average age opf students is greater than 21 
+
+```sql
+select country, avg(age) from students group by country having avg(age) > 21;
+```
