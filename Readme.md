@@ -263,4 +263,21 @@ select coalesce(country, 'unknown') as country, count(*) as user_count
   from users
 group by coalesce(country, 'unknown')
 
+
+SELECT *
+FROM users
+ORDER BY id
+LIMIT 5;
+
+
+SELECT *
+FROM users
+ORDER BY id
+LIMIT 5 OFFSET 5;
+
+SELECT *
+FROM users
+ORDER BY age ASC
+LIMIT 3;
+
 ```
