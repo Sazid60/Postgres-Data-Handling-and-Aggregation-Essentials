@@ -172,3 +172,95 @@ select course, count(*) from students group by course having count(*) >1;
 ```sql
 select country, avg(age) from students group by country having avg(age) > 21;
 ```
+
+# Practice Problem 
+
+```sql
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  first_name VARCHAR(50),
+  last_name VARCHAR(50),
+  age INT,
+  country VARCHAR(50),
+  email VARCHAR(100)
+);
+
+
+
+INSERT INTO users (first_name, last_name, age, country, email) VALUES
+('Arif',    'Hossain',   25, 'Bangladesh', 'arif@example.com'),
+('Sara',    'Khan',      30, 'India',      'sara@example.com'),
+('Rafi',    'Ahmed',     22, 'Pakistan',   'rafi@example.com'),
+('Nusrat',  'Akter',     28, 'Nepal',      'nusrat@example.com'),
+('Tanvir',  'Rahman',    35, 'Sri Lanka',  'tanvir@example.com'),
+('Mina',    'Begum',     20, 'Maldives',   'mina@example.com'),
+('Fahim',   'Chowdhury', 40, 'Bhutan',     'fahim@example.com'),
+('Rumana',  'Sultana',   27, 'Afghanistan','rumana@example.com'),
+('Jahid',   'Islam',     24, 'Bangladesh', 'jahid@example.com'),
+('Tania',   'Sultana',   29, 'Nepal',      'tania@example.com');
+
+select * from users;
+
+drop table users; 
+
+alter table hugers rename to users;
+
+alter table users 
+  add column address text;
+
+alter table users
+  drop column address;
+
+ALTER TABLE users 
+ADD COLUMN rating DOUBLE PRECISION;
+
+alter table users 
+  rename column rating to user_rating;
+
+ALTER TABLE users 
+ALTER COLUMN user_rating TYPE NUMERIC(10,2);
+
+ALTER TABLE users 
+ALTER COLUMN user_rating set not null;
+
+ALTER TABLE users 
+ALTER COLUMN user_rating drop not null;
+
+ALTER TABLE users 
+ALTER COLUMN user_rating set default 2;
+
+ALTER TABLE users 
+add constraint unique_employee_email unique(email);
+
+alter table users 
+  drop constraint unique_employee_email;
+
+select * from users; 
+
+select first_name, email, age from users
+  where age > 25;
+
+select country, count(*) from users 
+  group by country;
+
+select min(age) from users;
+
+select max(age) from users;
+select avg(age) from users;
+
+select * from users
+  order by age ASC;
+
+INSERT INTO users (first_name, last_name, age, country, email) VALUES
+('Imran', 'Haque', 26, 'Bangladesh', NULL),
+('Lina',  'Begum', 23, 'India', NULL);
+
+select coalesce(email, 'Not Provided') from users;
+
+update users set country = null where id = 12
+
+select coalesce(country, 'unknown') as country, count(*) as user_count 
+  from users
+group by coalesce(country, 'unknown')
+
+```
