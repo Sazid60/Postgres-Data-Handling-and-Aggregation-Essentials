@@ -281,3 +281,58 @@ ORDER BY age ASC
 LIMIT 3;
 
 ```
+
+## Date and Foreign Key Related Practice
+
+```sql 
+create database test_db;
+show timezone;
+
+select now();
+
+select now()::date;
+select now()::time;
+select to_char(now(),'yyy/mm/dd');
+select to_char(now(),'dd');
+select to_char(now(),'mm');
+
+select current_date - interval '1 month';
+select current_date - interval '1 day';
+select current_date - interval '1 year 2 month';
+
+select age(current_date, '1999-07-02');
+
+select extract(year from '2025-01-25'::date);
+select extract(month from '2025-01-25'::date);
+select extract(day from '2025-01-25'::date);
+
+
+SELECT extract(year from dob) as birth_year, count(*)
+FROM students
+GROUP BY birth_year;
+
+CREATE TABLE post (
+    id serial PRIMARY KEY,
+    title TEXT NOT NULL,
+    user_id INTEGER REFERENCES "user" (id) ON DELETE CASCADE
+)
+
+CREATE TABLE post (
+    id serial PRIMARY KEY,
+    title TEXT NOT NULL,
+    user_id INTEGER REFERENCES "user" (id) ON DELETE SET NULL
+)
+
+CREATE TABLE post (
+    id serial PRIMARY KEY,
+    title TEXT NOT NULL,
+    user_id INTEGER REFERENCES "user" (id) ON DELETE RESTRICT
+)
+
+CREATE TABLE post (
+    id serial PRIMARY KEY,
+    title TEXT NOT NULL,
+    user_id INTEGER REFERENCES "user"(id) ON DELETE SET DEFAULT  DEFAULT 2
+)
+
+```
